@@ -6,7 +6,7 @@
 /*   By: yde-goes <yde-goes@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 23:29:00 by yde-goes          #+#    #+#             */
-/*   Updated: 2022/09/12 23:34:45 by yde-goes         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:41:40 by yde-goes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ int main(void)
 	{
 		/* processo-filho */
 		value += 15;
+		printf("CHILD: value = %d\n", value);
 		return (0);
 	}
 	else if (pid > 0)
 	{
 		/* processo-pai */ 
 		wait(NULL);
-		printf("PARENT: value = %d", value);
+		printf("PARENT: value = %d\n", value);
 		/* LINHA A */
 		return (0);
 	}

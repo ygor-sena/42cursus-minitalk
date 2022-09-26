@@ -6,12 +6,12 @@
 /*   By: yde-goes <yde-goes@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 22:31:19 by yde-goes          #+#    #+#             */
-/*   Updated: 2022/09/15 22:37:21 by yde-goes         ###   ########.fr       */
+/*   Updated: 2022/09/26 18:53:56 by yde-goes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<signal.h>
-#include<stdio.h>
+#include <signal.h>
+#include <stdio.h>
 
 /* Handler function */
 void	handler(int sig)
