@@ -6,7 +6,7 @@
 /*   By: yde-goes <yde-goes@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 22:25:43 by yde-goes          #+#    #+#             */
-/*   Updated: 2022/09/13 22:42:52 by yde-goes         ###   ########.fr       */
+/*   Updated: 2022/09/27 01:47:44 by yde-goes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(void)
 		return (1);
 	if (pid == 0)
 	{
-		//Child process
+		/* Child process */
 		sleep(5);
 		kill(getppid(), SIGUSR1);
 	}
@@ -44,7 +44,7 @@ int	main(void)
 		sa.sa_flags = SA_RESTART;
 		sa.sa_handler = &handle_sigusr1;
 		sigaction(SIGUSR1, &sa, NULL);
-		//Parent process
+		/* Parent process */
 		printf("What is the result of 3 x 5?: ");
 		scanf("%d", &x);
 		if (x == 15)
