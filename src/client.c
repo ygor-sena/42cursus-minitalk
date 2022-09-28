@@ -6,36 +6,61 @@
 /*   By: yde-goes <yde-goes@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 00:56:42 by yde-goes          #+#    #+#             */
-/*   Updated: 2022/09/26 20:26:50 by yde-goes         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:15:50 by yde-goes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include <signal.h>
-#include <sys/types.h>
-#include <string.h>
+#include "../includes/minitalk.h"
 
-void	data_received(__attribute__((unused)) int sig)
-{
-	(void) sig;
-	ft_putstr_fd("DATA RECEIVED BY SERVER\n", 1);
-}
+static void	msg_received(int sig, siginfo_t *info, void *context);
+static void	prepare_msg(char *pid_string, char *message);
+static void	send_char(int pid, t_byte byte);
 
 int	main(int argc, char **argv)
 {
-	int	pid;
-	struct sigaction s_response;
-
-	s_response.sa_handler = data_received;
-	sigemptyset(&s_response.sa_mask);
-	s_response.sa_flags = 0;
-	sigaction(SIGUSR1, &s_response, NULL);
 	if (argc != 3)
-		return (0);
-	pid = ft_atoi(argv[1]);
-	ft_printf("Client is ok\n");
-	kill(pid, SIGUSR1);
-	ft_printf("Sent to server\n");
-	ft_printf("Ending client\n");
-	return (0);
+	{
+		ft_putstr_fd("Usage is ./client <server_pid> <\"a text\">\n", 1);
+		return (EXIT_FAILURE);
+	}
+	ft_signal(SIGUSR1, msg_received);
+	prepare_msg(argv[1], argv[2]);
+	return (EXIT_SUCCESS);
+}
+
+static void	msg_received(int sig, siginfo_t *info, void *context)
+{
+	(void) sig;
+	(void) context;
+	ft_putnbr_fd(info->si_pid, 1);
+	ft_putstr_fd(" server PID: data received.\n", 1);
+}
+
+static void	prepare_msg(char *pid_string, char *message)
+{
+	int	pid;
+
+	pid = ft_atoi(pid_string);
+	while (*message)
+	{
+		send_char(pid, *message);
+		message++;
+	}
+	send_char(pid, *message);
+}
+
+static void	send_char(int pid, t_byte byte)
+{
+	t_byte	index;
+
+	index = 1 << 7;
+	while (index)
+	{
+		if (byte & index)
+			ft_kill(pid, SIGUSR1);
+		else
+			ft_kill(pid, SIGUSR2);
+		index >>= 1;
+		usleep(SLEEP_TIME);
+	}
 }

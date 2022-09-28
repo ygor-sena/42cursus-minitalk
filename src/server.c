@@ -6,51 +6,55 @@
 /*   By: yde-goes <yde-goes@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 00:56:38 by yde-goes          #+#    #+#             */
-/*   Updated: 2022/09/26 20:47:33 by yde-goes         ###   ########.fr       */
+/*   Updated: 2022/09/28 03:57:23 by yde-goes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "../includes/minitalk.h"
 
-#include <signal.h>
-#include <sys/types.h>
-#include <unistd.h>
-
-void	bit_is_one(int sig, siginfo_t *info, void *context)
-{
-	(void) sig;
-	(void) context;
-	ft_putstr_fd("Bit is one\n", 1);
-	kill(info->si_pid, SIGUSR1);
-}
-
-void	bit_is_zero(__attribute__((unused)) int sig, siginfo_t *info, void *context)
-{
-	(void) sig;
-	(void) info;
-	(void) context;
-	ft_putstr_fd("Bit is zero\n", 1);
-}
+static void	print_pid(void);
+static void	print_message(int sig, siginfo_t *info, void *context);
 
 int	main(void)
 {
-	struct sigaction s_true;
-	struct sigaction s_false;
-
-	ft_printf("Server PID is: %d\n", getpid());
-	ft_printf("Server is ok\n");
-	/* Signal 1 struct handler config */
-	s_true.sa_sigaction = bit_is_one;
-	sigemptyset(&s_true.sa_mask);
-	s_true.sa_flags = SA_SIGINFO;
-	/* Link handler and signal */
-	sigaction(SIGUSR1, &s_true, NULL);
-	s_false.sa_sigaction = bit_is_zero;
-	sigemptyset(&s_false.sa_mask);
-	s_false.sa_flags = SA_SIGINFO;
-	while(1)
-	{
+	print_pid();
+	ft_signal(SIGUSR1, print_message);
+	ft_signal(SIGUSR2, print_message);
+	while (1)
 		pause();
+	return (EXIT_SUCCESS);
+}
+
+static void	print_pid(void)
+{
+	ft_putstr_fd("Server PID is: ", 1);
+	ft_putnbr_fd(getpid(), 1);
+	ft_putstr_fd(".\n", 1);
+}
+
+static void	print_message(int sig, siginfo_t *info, void *context)
+{
+	static size_t	byte;
+	static t_byte	decoded_char;
+
+	(void) context;
+	if (sig == SIGUSR1)
+		sig = 1;
+	else if (sig == SIGUSR2)
+		sig = 0;
+	if (byte == 0 && decoded_char == 0)
+		byte = 8;
+	byte--;
+	decoded_char += (sig & 1) << byte;
+	if (byte == 0)
+	{
+		if (!decoded_char)
+		{
+			ft_putchar_fd('\n', 1);
+			ft_kill(info->si_pid, SIGUSR1);
+		}
+		ft_putchar_fd(decoded_char, 1);
+		byte = 8;
+		decoded_char = 0;
 	}
-	return (0);
 }
