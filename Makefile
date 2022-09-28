@@ -1,3 +1,4 @@
+NAME 		=		minitalk
 SERVER		=		server
 CLIENT 		=		client
 SRC			= 		server.c \
@@ -13,15 +14,18 @@ OBJS		= 		$(addprefix $(OBJS_PATH)/, $(SRC:.c=.o))
 CC			= 		cc -Wall -Wextra -Werror
 RM			= 		rm -rf
 
-all:				$(OBJS_PATH) $(LIBFT) $(OBJS)
-					$(CC) $(addprefix $(OBJS_PATH)/, server.o) $(addprefix $(OBJS_PATH)/, wrapper.o) $(LIBFT) -o $(SERVER)
-					$(CC) $(addprefix $(OBJS_PATH)/, client.o) $(addprefix $(OBJS_PATH)/, wrapper.o) $(LIBFT) -o $(CLIENT)
+all:				$(NAME) 
 
-$(SERVER):			$(OBJS_PATH) $(LIBFT) $(OBJS)		
-					$(CC) $(addprefix $(OBJS_PATH)/, server.o) $(addprefix $(OBJS_PATH)/, wrapper.o) $(LIBFT) -o $(SERVER)
+$(NAME):			$(OBJS_PATH) $(LIBFT) $(OBJS) $(SERVER) $(CLIENT)			
 
-$(CLIENT):			$(OBJS_PATH) $(LIBFT) $(OBJS)		
-					$(CC) $(addprefix $(OBJS_PATH)/, client.o) $(addprefix $(OBJS_PATH)/, wrapper.o) $(LIBFT) -o $(CLIENT)
+
+$(SERVER):			$(OBJS_PATH) $(LIBFT) $(OBJS)
+					$(CC) $(addprefix $(OBJS_PATH)/, server.o) \
+						$(addprefix $(OBJS_PATH)/, wrapper.o) $(LIBFT) -o $(SERVER)
+
+$(CLIENT):			$(OBJS_PATH) $(LIBFT) $(OBJS)	
+					$(CC) $(addprefix $(OBJS_PATH)/, client.o) \
+						$(addprefix $(OBJS_PATH)/, wrapper.o) $(LIBFT) -o $(CLIENT)
 					
 $(OBJS_PATH):
 					mkdir -p $(OBJS_PATH)

@@ -1,0 +1,14 @@
+[UNICODE]
+https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/
+
+https://www.cprogramming.com/tutorial/unicode.html
+
+https://unicode-table.com/en/1F49A/
+
+[SIGNALS]
+
+https://www.cs.kent.edu/~ruttan/sysprog/lectures/signals.html
+
+[BIT SHIFT MANIPULATION]
+https://www.educative.io/blog/bit-manipulation-algorithm
+
