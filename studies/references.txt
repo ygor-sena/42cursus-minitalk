@@ -9,6 +9,13 @@ https://unicode-table.com/en/1F49A/
 
 https://www.cs.kent.edu/~ruttan/sysprog/lectures/signals.html
 
+https://stackoverflow.com/questions/12587621/signal-handler-sa-sigaction-arguments
+
+https://stackoverflow.com/c/42network/questions/1919/1920#1920
+
+
 [BIT SHIFT MANIPULATION]
 https://www.educative.io/blog/bit-manipulation-algorithm
 
+[COMPUTER SYSTEM SITE]
+https://csapp.cs.cmu.edu/3e/code.html
