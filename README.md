@@ -81,5 +81,5 @@ To send another message to the `server`, the `client` program must be executed o
 - About bit shift manipulation (**this video is amazing!**):
   - [Bit Manipulation](https://www.youtube.com/watch?v=7jkIUgLC29I) by [Make School](https://www.youtube.com/@MakeSchoolCS).
 
-- Computer System source code examples:
-  - https://csapp.cs.cmu.edu/3e/code.html
+- BRYANT, Randal; O'HALLARON, David. _Computer Systems: a programmer's perspective_. 3rd edition, 2016. 
+  - Source code of the book examples: https://csapp.cs.cmu.edu/3e/code.html
