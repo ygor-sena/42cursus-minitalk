@@ -19,7 +19,7 @@ The `server` should be able to receive strings from several clients in a row wit
 #### 1) Copy this repository to your local workstation
 
 ```html
-git@github.com:ygor-sena/42cursus-minitalk.git
+git clone git@github.com:ygor-sena/42cursus-minitalk.git
 ```
 
 #### 2) Compile the project with Makefile
