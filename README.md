@@ -51,7 +51,7 @@ valgrind --leak-check=full --show-leak-kinds=all ./server
 It must receive the following three arguments: the executable program, the server PID and the text to be sent. For example:
 
 ```html
-./client 1024 "This is amazing not so long sentence, minitalk!"
+./client 1024 "This is an amazing but not so long sentence, minitalk!"
 ```
 
 #### 5) Usage example
