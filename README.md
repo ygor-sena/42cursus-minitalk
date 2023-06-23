@@ -8,13 +8,13 @@
     <img src="https://img.shields.io/badge/Status-Completed-brightgreen.svg" alt="Status">
 </p>
 
-## Introduction
+## 📣 Introduction
 
 The purpose of this project is to code a small data exchange program using UNIX signals. Therefore, the communication program between a `client` and a `server` has to be done using **only** UNIX signals. Thus, it was allowed to use only two signals: `SIGUSR1` and `SIGUSR2`.
 
 The `server` should be able to receive strings from several clients in a row without needing to restart. For the bonus project, the `server` also acknowlegdes every message received by sending back a signal to the `client` and supports Unicode characters.
 
-## How to compile and run the project
+## ⚒️ How to compile and run the project
 
 #### 1) Copy this repository to your local workstation
 
@@ -64,7 +64,7 @@ After completing the four steps above, the `server` will receive and print the m
 
 To send another message to the `server`, the `client` program must be executed once again.
 
-## References
+## 📖 References
 
 - About Unicode characters:
 
